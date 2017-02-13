@@ -1,0 +1,31 @@
+*{
+	font-size:18px;
+}
+html,body{
+	height:100%;
+	width: 100%;
+}
+h4{
+	margin: auto;
+	text-align: center;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+.outwaytitle{
+	margin-bottom:10px;
+}
+.outway>span{
+	text-align: center;
+}
+.choice>a{
+	font-size: 20px;
+	color:red;
+}
+.place,.facttime,.shouldtime,.parkmoney,.path{
+	border:none;
+	border-bottom: 1px solid black;
+	outline: none;
+}
+.outtime,.parkink,.averagetime{
+	margin-bottom: 15px;
+}

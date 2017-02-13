@@ -1,0 +1,333 @@
+{% extends "base.html" %} {% block style %}
+<meta http-equiv=Content-Type content="text/html;charset=utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
+<meta content=always name=referrer>
+<link href="http://10.0.0.2:8000/static/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="http://10.0.0.2:8000/static/css/questionnaire.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="http://10.0.0.2:8000/static/js/jquery-3.1.0.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://10.0.0.2:8000/static/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://10.0.0.2:8000/static/js/city.js"></script>
+<title>问卷调查</title>
+<style type="text/css">
+
+</style>
+<script type="text/javascript">
+	window.onload = function() {
+		var date = document.getElementById('date');
+		var time = document.getElementById('time');
+		var now = new Date();
+		var nowdate = now.getDate();
+		var nowyear = now.getFullYear();
+		var nowmonth = now.getMonth() + 1;
+		var now1 = nowyear + '/' + nowmonth + '/' + nowdate;
+		var nowhour = now.getHours();
+		var nowmin = now.getMinutes();
+		var nowsecond = now.getSeconds();
+		var now2 = nowhour + ":" + nowmin + ":" + nowsecond;
+		date.setAttribute("placeholder", now1);
+		time.setAttribute("placeholder", now2);
+	}
+</script>
+{% end %} {% block header %} {% end %} {% block body %}
+<h4 class="checktitle">{{ question.get('checktitle', '') }}</h4>
+<div id="container" class="col-sm-8 col-sm-offset-2">
+	<form class="form-horizontal" role="form" action="" method="post" name="questionaire">
+		<div class="form-group">
+			<b class="col-sm-10">您的性别</b>
+			<div class="col-sm-10">
+				<input type="radio" class="sex0" name="aa" value="{{ question.get('sex0', '') }}">{{ question.get('sex0', '') }}&nbsp;&nbsp;
+				<input type="radio" class="sex1" name="aa" value="{{ question.get('sex1', '') }}">{{ question.get('sex1', '') }}
+			</div>
+		</div>
+		<div class="form-group">
+			<b class="col-sm-10">您的年龄</b>
+			<div class="col-sm-10">
+				<input type="radio" class="age0" name="bb" value="{{ question.get('age0', '') }}">{{ question.get('age0', '') }}<br/>
+				<input type="radio" class="age1" name="bb" value="{{ question.get('age1', '') }}">{{ question.get('age1', '') }}<br/>
+				<input type="radio" class="age2" name="bb" value="{{ question.get('age2', '') }}">{{ question.get('age2', '') }}<br/>
+				<input type="radio" class="age3" name="bb" value="{{ question.get('age3', '') }}">{{ question.get('age3', '') }}<br/>
+				<input type="radio" class="age4" name="bb" value="{{ question.get('age4', '') }}">{{ question.get('age4', '') }}<br/>
+				<input type="radio" class="age5" name="bb" value="{{ question.get('age5', '') }}">{{ question.get('age5', '') }}
+			</div>
+		</div>
+		<div class="form-group">
+			<b class="col-sm-10">您的职业</b>
+			<div class="col-sm-10">
+				<input type="radio" class="occupation0" name="cc" value="{{ question.get('occupation0', '') }}">{{ question.get('occupation0', '') }}
+				<input type="radio" class="occupation1" name="cc" value="{{ question.get('occupation1', '') }}">{{ question.get('occupation1', '') }}<br/>
+				<input type="radio" class="occupation2" name="cc" value="{{ question.get('occupation2', '') }}">{{ question.get('occupation2', '') }}
+				<input type="radio" class="occupation3" name="cc" value="{{ question.get('occupation3', '') }}">{{ question.get('occupation3', '') }}<br/>
+				<input type="radio" class="occupation4" name="cc" value="{{ question.get('occupation4', '') }}">{{ question.get('occupation4', '') }}
+				<input type="radio" class="occupation5" name="cc" value="{{ question.get('occupation5', '') }}">{{ question.get('occupation5', '') }}<br/>
+				<input type="radio" class="occupation6" name="cc" value="{{ question.get('occupation6', '') }}">{{ question.get('occupation6', '') }}
+				<input type="radio" class="occupation7" name="cc" value="{{ question.get('occupation7', '') }}">{{ question.get('occupation7', '') }}<br/>
+				<input type="radio" class="occupation8" name="cc" value="{{ question.get('occupation8', '') }}">{{ question.get('occupation8', '') }}
+				<input type="radio" class="occupation9" name="cc" value="{{ question.get('occupation9', '') }}">{{ question.get('occupation9', '') }}<br/>
+				<input type="radio" class="occupation10" name="cc" value="{{ question.get('occupation10', '') }}">{{ question.get('occupation10', '') }}
+				<input type="radio" class="occupation11" name="cc" value="{{ question.get('occupation11', '') }}">{{ question.get('occupation11', '') }}
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-10" for="date">调查日期</label>
+			<div class="col-sm-12">
+				<input type="text" class="form-control" id="date" readonly name="date">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-10" for="time">时间</label>
+			<div class="col-sm-12">
+				<input type="text" class="form-control" id="time" readonly name="time">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-10" for="location">地点</label>
+			<div class="col-sm-12">
+				<input type="text" class="form-control" id="location" required name="location">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-10" for="weather">天气情况</label>
+			<div class="col-sm-12">
+				<select id="browsers" name="weather">
+					<option class="weather0" value="{{ question.get('', '') }}">{{ question.get('', '') }}</option>
+					<option class="weather0" value="{{ question.get('weather0', '') }}">{{ question.get('weather0', '') }}</option>
+					<option class="weather1" value="{{ question.get('weather1', '') }}">{{ question.get('weather1', '') }}</option>
+					<option class="weather2" value="{{ question.get('weather2', '') }}">{{ question.get('weather2', '') }}</option>
+					<option class="weather3" value="{{ question.get('weather3', '') }}">{{ question.get('weather3', '') }}</option>
+					<option class="weather4" value="{{ question.get('weather4', '') }}">{{ question.get('weather4', '') }}</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group" style="margin-bottom:60px;">
+			<b class="col-sm-10 outwaytitle">出行目的</b>
+			<div class="col-sm-12 outway">
+				<span class="col-sm-3"><input type="radio" class="outpurpose0" name="dd" value="{{ question.get('outpurpose0', '') }}">{{ question.get('outpurpose0', '') }}</span><br/>
+				<span class="col-sm-3"><input type="radio" class="outpurpose1" name="dd" value="{{ question.get('outpurpose1', '') }}">{{ question.get('outpurpose1', '') }}</span><br/>
+				<span class="col-sm-3"><input type="radio" class="outpurpose2"name="dd" value="{{ question.get('outpurpose2', '') }}">{{ question.get('outpurpose2', '') }}</span><br/>
+				<span class="col-sm-3"><input type="radio" class="outpurpose3" name="dd" value="{{ question.get('outpurpose3', '') }}">{{ question.get('outpurpose3', '') }}</span>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-12">
+				<label style="text-align:left;padding-left:none;">出行起点：</label><br/>
+				<input type="text" class="place" name="placebegin"><br/>
+				<label style="text-align:left">终点:</label><br/>
+				<input type="text" class="place" class="place" name="placeend">
+			</div>
+			<div style="margin-left:16px;">(具体路名、门牌号、单位或小区名称) </div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-10 outtime" for="facttime shouldtime">出行用时</label>
+			<div class="col-sm-12">
+				<span>实际用时为：</span><br/>
+				<select id="times0" name="facttime">
+					<option name="facttime" class="facttime0" value="{{ question.get('', '') }}">{{ question.get('', '') }}</option>
+					<option name="facttime" class="facttime0" value="{{ question.get('facttime0', '') }}">{{ question.get('facttime0', '') }}</option>
+					<option name="facttime" class="facttime1" value="{{ question.get('facttime1', '') }}">{{ question.get('facttime1', '') }}</option>
+					<option name="facttime" class="facttime2" value="{{ question.get('facttime2', '') }}">{{ question.get('facttime2', '') }}</option>
+					<option name="facttime" class="facttime3" value="{{ question.get('facttime3', '') }}">{{ question.get('facttime3', '') }}</option>
+				</select>
+				<br />
+				<span>您觉得合理的花费时间为：</span><br/>
+				<select id="times1" name="shouldtime">
+					<option name="shouldtime" class="shouldtime0" value="{{ question.get('', '') }}">{{ question.get('', '') }}</option>
+					<option name="shouldtime" class="shouldtime0" value="{{ question.get('shouldtime0', '') }}">{{ question.get('shouldtime0', '') }}</option>
+					<option name="shouldtime" class="shouldtime1" value="{{ question.get('shouldtime1', '') }}">{{ question.get('shouldtime1', '') }}</option>
+					<option name="shouldtime" class="shouldtime2" value="{{ question.get('shouldtime2', '') }}">{{ question.get('shouldtime2', '') }}</option>
+					<option name="shouldtime" class="shouldtime3" value="{{ question.get('shouldtime3', '') }}">{{ question.get('shouldtime3', '') }}</option>
+					<option name="shouldtime" class="shouldtime4" value="{{ question.get('shouldtime4', '') }}">{{ question.get('shouldtime4', '') }}</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<b class="col-sm-10">本次出行的主要路段一：</b>
+			<select id="province" class="col-sm-12" name="path1">
+				<option name="path1" class="path" value="{{ question.get('path1', '省份（市）') }}">{{ question.get('path1', '省份（市）') }}</option>
+			</select>
+			<div class="col-sm-12">
+				1、该路段拥堵程度
+				<select id="yongdudegree" name="routestation">
+					<option name="routestation" class="routestation0" value="{{ question.get('', '') }}">{{ question.get('', '') }}</option>
+					<option name="routestation" class="routestation0" value="{{ question.get('routestation0', '') }}">{{ question.get('routestation0', '') }}</option>
+					<option name="routestation" class="routestation1" value="{{ question.get('routestation1', '') }}">{{ question.get('routestation1', '') }}</option>
+				</select>
+			</div>
+			<div class="col-sm-12">
+				2、该路段拥堵次数<br/>
+				<input type="checkbox" name="Q20" value="{{ question.get('Q20', '') }}" class="yongdutimes">{{ question.get('Q20', '') }}<br/>
+				<input type="checkbox" name="Q21" value="{{ question.get('Q21', '') }}" class="yongdutimes">{{ question.get('Q21', '') }}<br/>
+				<input type="checkbox" name="Q22" value="{{ question.get('Q22', '') }}" class="yongdutimes">{{ question.get('Q22', '') }}<br/>
+				<input type="checkbox" name="Q23" value="{{ question.get('Q23', '') }}" class="yongdu">{{ question.get('Q23', '') }}
+			</div>
+			<div class="col-sm-12">
+				3、经常拥堵的原因<br/>
+				<input type="checkbox" name="Q30" value="{{ question.get('Q30', '') }}">{{ question.get('Q30', '') }}<br/>
+				<input type="checkbox" name="Q31" value="{{ question.get('Q31', '') }}">{{ question.get('Q31', '') }}<br/>
+				<input type="checkbox" name="Q32" value="{{ question.get('Q32', '') }}">{{ question.get('Q32', '') }}<br/>
+				<input type="checkbox" name="Q33" value="{{ question.get('Q33', '') }}">{{ question.get('Q33', '') }}<br/>
+				<input type="checkbox" name="Q34" value="{{ question.get('Q34', '') }}">{{ question.get('Q34', '') }}<br/>
+				<input type="checkbox" name="Q35" value="{{ question.get('Q35', '') }}">{{ question.get('Q35', '') }}<br/>
+				<input type="checkbox" name="Q36" value="{{ question.get('Q36', '') }}">{{ question.get('Q36', '') }}<br/>
+				<input type="checkbox" name="Q37" value="{{ question.get('Q37', '') }} ">{{ question.get('Q37', '') }} <br/>
+				<input type="checkbox" name="Q38" value="{{ question.get('Q38', '') }}">{{ question.get('Q38', '') }}<br/>
+				<input type="checkbox" name="Q39" value="{{ question.get('Q39', '') }} ">{{ question.get('Q39', '') }}
+			</div>
+			<div class="col-sm-12">
+				4、偶尔拥堵的原因<br/>
+				<input type="checkbox" name="Q40" value="{{ question.get('Q40', '') }}">{{ question.get('Q40', '') }}<br/>
+				<input type="checkbox" name="Q41" value="{{ question.get('Q41', '') }}">{{ question.get('Q41', '') }}<br/>
+				<input type="checkbox" name="Q42" value="{{ question.get('Q42', '') }}">{{ question.get('Q42', '') }}<br/>
+				<input type="checkbox" name="Q43" value="{{ question.get('Q43', '') }}">{{ question.get('Q43', '') }}<br/>
+				<input type="checkbox" name="Q44" value="{{ question.get('Q44', '') }}">{{ question.get('Q44', '') }}
+			</div>
+		</div>
+		<div class="form-group">
+			<b class="col-sm-10">本次出行的主要路段二：</b>
+			<select id="city" class="col-sm-12" name="path2">
+				<option name="path2" class="path" value="{{ question.get('path2', '市（区）') }}">{{ question.get('path2', '市（区）') }}</option>
+			</select>
+			<div class="col-sm-12">
+				1、该路段拥堵程度
+				<select id="yongdudegree" name="routestations">
+					<option name="routestations''  value="{{ question.get( '', '') }} ">{{ question.get('', '') }}</option>
+					<option name="routestations'' class=" routestation00 " value="{{ question.get( 'routestation00', '') }} ">{{ question.get('routestation00', '') }}</option>
+				  <option name="routestations" class="routestation11" value="{{ question.get('routestation11', '') }}">{{ question.get('routestation11', '') }}</option>
+				</select>
+			</div>
+			<div class="col-sm-12">
+				2、该路段拥堵次数<br/>
+				<input type="checkbox" name="QQ20" value="{{ question.get('QQ20', '') }}" class="yongdutimes">{{ question.get('QQ20', '') }}<br/>
+				<input type="checkbox" name="QQ21" value="{{ question.get('QQ21', '') }}" class="yongdutimes">{{ question.get('QQ21', '') }}<br/>
+				<input type="checkbox" name="QQ22" value="{{ question.get('QQ22', '') }}" class="yongdutimes">{{ question.get('QQ22', '') }}<br/>
+				<input type="checkbox" name="QQ23" value="{{ question.get('QQ23', '') }}" class="yongdu">{{ question.get('QQ23', '') }}
+			</div>
+			<div class="col-sm-12">
+				3、经常拥堵的原因<br/>
+				<input type="checkbox" name="QQ30" value="{{ question.get('QQ30', '') }}">{{ question.get('QQ30', '') }}<br/>
+				<input type="checkbox" name="QQ31" value="{{ question.get('QQ31', '') }}">{{ question.get('QQ31', '') }}<br/>
+				<input type="checkbox" name="QQ32" value="{{ question.get('QQ32', '') }}">{{ question.get('QQ32', '') }}<br/>
+				<input type="checkbox" name="QQ33" value="{{ question.get('QQ33', '') }}">{{ question.get('QQ33', '') }}<br/>
+				<input type="checkbox" name="QQ34" value="{{ question.get('QQ34', '') }}">{{ question.get('QQ34', '') }}<br/>
+				<input type="checkbox" name="QQ35" value="{{ question.get('QQ35', '') }}">{{ question.get('QQ35', '') }}<br/>
+				<input type="checkbox" name="QQ36" value="{{ question.get('QQ36', '') }}">{{ question.get('QQ36', '') }}<br/>
+				<input type="checkbox" name="QQ37" value="{{ question.get('QQ37', '') }} ">{{ question.get('QQ37', '') }} <br/>
+				<input type="checkbox" name="QQ38" value="{{ question.get('QQ38', '') }}">{{ question.get('QQ38', '') }}<br/>
+				<input type="checkbox" name="QQ39" value="{{ question.get('QQ39', '') }} ">{{ question.get('QQ39', '') }}
+			</div>
+			<div class="col-sm-12">
+				4、偶尔拥堵的原因<br/>
+				<input type="checkbox" name="QQ40" value="{{ question.get('QQ40', '') }}">{{ question.get('QQ40', '') }}<br/>
+				<input type="checkbox" name="QQ41" value="{{ question.get('QQ41', '') }}">{{ question.get('QQ41', '') }}<br/>
+				<input type="checkbox" name="QQ42" value="{{ question.get('QQ42', '') }}">{{ question.get('QQ42', '') }}<br/>
+				<input type="checkbox" name="QQ43" value="{{ question.get('QQ43', '') }}">{{ question.get('QQ43', '') }}<br/>
+				<input type="checkbox" name="QQ44" value="{{ question.get('QQ44', '') }}">{{ question.get('QQ44', '') }}
+			</div>
+		</div>
+		<div class="form-group">
+			<b class="col-sm-10" style="font-size:25px;margin-bottom:20px">亲，汽车出行请继续！如不是，请选择对应方式继续问卷~</b>
+			<div class="col-sm-12 choice">
+				<a href="#busQ" class="col-sm-3">公交车</a>
+				<a href="#taxiQ" class="col-sm-3">出租车驾驶员</a>
+			</div>
+		</div>
+		<div class="form-group">
+			<b class="col-sm-10 parking">到达目的地后，您选择的停车方式：</b>
+			<div class="col-sm-10">
+				<input type="radio" class="parkway0" name="ee" value="{{ question.get('parkway0', '') }}">{{ question.get('parkway0', '') }}<br/>
+				<input type="radio" class="parkway1" name="ee" value="{{ question.get('parkway1', '') }}">{{ question.get('parkway1', '') }}<br/>
+				<input type="radio" class="parkway2" name="ee" value="{{ question.get('parkway2', '') }}">{{ question.get('parkway2', '') }}<br/>
+				<input type="radio" class="parkway3" name="ee" value="{{ question.get('parkway3', '') }}">{{ question.get('parkway3', '') }}
+			</div>
+			<b class="col-sm-10 parking">停车费用：</b>
+			<div class="col-sm-10"><input type="text" name="parkmoney" class="parkmoney">元</div>
+		</div>
+		<div class="form-group">
+			<b class="col-sm-10 averagetime">每周工作日平均开车出行次数</b>
+			<div class="col-sm-12">
+				<span class="col-sm-3"><input type="radio" class="kaichecishu0" name="ff" value="{{ question.get('kaichecishu0', '') }}">{{ question.get('kaichecishu0', '') }}</span><br/>
+				<span class="col-sm-3"><input type="radio" class="kaichecishu1" name="ff" value="{{ question.get('kaichecishu1', '') }}">{{ question.get('kaichecishu1', '') }}</span><br/>
+				<span class="col-sm-3"><input type="radio" class="kaichecishu2" name="ff" value="{{ question.get('kaichecishu2', '') }}">{{ question.get('kaichecishu2', '') }}</span><br/>
+				<span class="col-sm-3"><input type="radio" class="kaichecishu3" name="ff" value="{{ question.get('kaichecishu3', '') }}">{{ question.get('kaichecishu3', '') }}</span><br/>
+				<span class="col-sm-3"><input type="radio" class="kaichecishu4" name="ff" value="{{ question.get('kaichecishu4', '') }}">{{ question.get('kaichecishu4', '') }}</span><br/>
+				<span class="col-sm-3"><input type="radio" class="kaichecishu5" name="ff" value="{{ question.get('kaichecishu5', '') }}">{{ question.get('kaichecishu5', '') }}</span><br/>
+				<span class="col-sm-3"><input type="radio" class="kaichecishu6" name="ff" value="{{ question.get('kaichecishu6', '') }}">{{ question.get('kaichecishu6', '') }}</span>
+			</div>
+		</div>
+		<div class="form-group">
+			<div id="busQ"><b style="font-size:30px;">公交使用者问卷</b></div>
+		</div>
+		<div class="form-group">
+			<b class="col-sm-10 outtime">待车时间</b>
+			<div class="col-sm-12">
+				实际换乘等待的时间：<br/>
+				<input type="text" name="passagetime" class="passagetime">分钟<br/> 您觉得合理的换乘等待时间为：
+				<br/>
+				<input type="text" name="reactpassagetime" class="reactpassagetime">分钟
+			</div>
+		</div>
+		<div class="form-group">
+			<b class="col-sm-10 averagetime">每周工作日平均乘坐公交车的次数</b>
+			<div class="col-sm-12">
+				<span class="col-sm-3"><input type="radio" class="gjcishu0" name="gg" value="{{ question.get('gjcishu0', '') }}">{{ question.get('gjcishu0', '') }}</span><br/>
+				<span class="col-sm-3"><input type="radio" class="gjcishu1" name="gg" value="{{ question.get('gjcishu1', '') }}">{{ question.get('gjcishu1', '') }}</span><br/>
+				<span class="col-sm-3"><input type="radio" class="gjcishu2" name="gg" value="{{ question.get('gjcishu2', '') }}">{{ question.get('gjcishu2', '') }}</span><br/>
+				<span class="col-sm-3"><input type="radio" class="gjcishu3" name="gg" value="{{ question.get('gjcishu3', '') }}">{{ question.get('gjcishu3', '') }}</span><br/>
+				<span class="col-sm-3"><input type="radio" class="gjcishu4" name="gg" value="{{ question.get('gjcishu4', '') }}">{{ question.get('gjcishu4', '') }}次</span><br/>
+				<span class="col-sm-3"><input type="radio" class="gjcishu5" name="gg" value="{{ question.get('gjcishu5', '') }}">{{ question.get('gjcishu5', '') }}</span><br/>
+				<span class="col-sm-3"><input type="radio" class="gjcishu6" name="gg" value="{{ question.get('gjcishu6', '') }}">{{ question.get('gjcishu6', '') }}</span>
+			</div>
+		</div>
+		<div class="form-group">
+			<div id="taxiQ"><b style="font-size:30px;">出租车驾驶者</b></div>
+		</div>
+		<div class="form-group">
+			<b class="col-sm-10">您在本市驾驶出租车的时间</b>
+			<div class="col-sm-10">
+				<input type="radio" class="drivetime0" name="hh" value="{{ question.get('drivetime0', '') }}">{{ question.get('drivetime0', '') }}<br/>
+				<input type="radio" class="drivetime1" name="hh" value="{{ question.get('drivetime1', '') }}">{{ question.get('drivetime1', '') }}<br/>
+				<input type="radio" class="drivetime2" name="hh" value="{{ question.get('drivetime2', '') }}">{{ question.get('drivetime2', '') }}<br/>
+				<input type="radio" class="drivetime3" name="hh" value="{{ question.get('drivetime3', '') }}">{{ question.get('drivetime3', '') }}<br/>
+				<input type="radio" class="drivetime4" name="hh" value="{{ question.get('drivetime4', '') }}">{{ question.get('drivetime4', '') }}<br/>
+			</div>
+		</div>
+		<input type="submit" value="提交" onclick="msg()">
+	</form>
+</div>
+
+{% end %} {% block footer %}
+<script>
+	function msg() {
+		if(confirm("你确认要提交吗？"))
+			document.questionaire.submit();
+	}
+	var cityAll = city.citylist;
+	$.each(cityAll, function(i, n) {
+		$("#province").append('<option value="' + n.p + '">' + n.p + '</option>');
+	});
+	$("#province,#city").change(function() {
+		if($(this).attr("id") == "province") {
+			$("#city").html("").append('<option value="市（区）">市（区）</option>').next().html("").append('<option value="县、镇">县、镇</option>');
+		} else {
+			$("#county").html("").append('<option value="县、镇">县、镇</option>');
+		}
+		$.each(cityAll, function(j, k) {
+			if($("#province").val() == k.p) {
+				$.each(k.c, function(l, m) {
+					$("#city").append('<option value="' + m.n + '">' + m.n + '</option>');
+					if(m.a) {
+						$("#county").show();
+						if($("#city").val() == m.n) {
+							$.each(m.a, function(e, f) {
+								$("#county").append('<option value="' + f.s + '">' + f.s + '</option>');
+							});
+						}
+					} else {
+						$("#county").hide();
+
+					}
+				});
+			}
+		});
+	});
+</script>
+{% end %}
